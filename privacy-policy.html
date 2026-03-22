@@ -1,113 +1,531 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سياسة الخصوصية - FoodScanner</title>
+    <title>HealthScan - مسح الطعام والأدوية</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
+            font-family: 'Segoe UI', 'Tahoma', 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             padding: 20px;
-            background-color: #f5f5f5;
         }
+
         .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
+
+        /* Language Switcher */
+        .lang-switch {
+            position: sticky;
+            top: 20px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 20px 20px 0 20px;
+            z-index: 100;
+        }
+
+        .lang-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: #1e293b;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.05);
+            background: #e2e8f0;
+        }
+
+        /* Content Sections */
+        .content {
+            display: none;
+            padding: 40px 50px 50px 50px;
+        }
+
+        .content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 25px -5px rgba(102, 126, 234, 0.4);
+        }
+
+        .logo span {
+            font-size: 48px;
+        }
+
         h1 {
-            color: #2c3e50;
-            text-align: center;
-            border-bottom: 2px solid #27ae60;
-            padding-bottom: 10px;
+            font-size: 48px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
         }
-        h2 {
-            color: #27ae60;
-            margin-top: 20px;
+
+        .tagline {
+            font-size: 20px;
+            color: #4a5568;
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
-        .date {
-            text-align: center;
-            color: #7f8c8d;
+
+        /* Privacy Badge */
+        .privacy-badge {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+            border-radius: 60px;
+            padding: 10px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 30px;
         }
-        ul {
-            padding-left: 20px;
+
+        .privacy-badge span {
+            font-size: 20px;
         }
-        li {
-            margin-bottom: 8px;
+
+        .privacy-badge p {
+            color: #065f46;
+            font-weight: 500;
         }
-        .footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 25px;
             text-align: center;
-            font-size: 12px;
-            color: #95a5a6;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Permissions Section */
+        .permissions {
+            background: #fefce8;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 40px 0;
+            border-left: 4px solid #eab308;
+        }
+
+        .permissions h3 {
+            color: #854d0e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .permission-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .permission-item {
+            background: white;
+            padding: 10px 18px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #1e293b;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* API Section */
+        .api-section {
+            background: #eff6ff;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 40px 0;
+        }
+
+        .api-section h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .api-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .api-item {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-family: monospace;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px -5px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px -5px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            .tagline {
+                font-size: 16px;
+            }
+            
+            .lang-switch {
+                position: relative;
+                justify-content: center;
+                padding-top: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>سياسة الخصوصية</h1>
-        <div class="date">آخر تحديث: 22 مارس 2026</div>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLanguage('ar')">🇸🇦 العربية</button>
+            <button class="lang-btn" onclick="switchLanguage('en')">🇬🇧 English</button>
+        </div>
 
-        <p>نحن في تطبيق FoodScanner نلتزم بحماية خصوصيتك. توضح هذه السياسة كيفية جمع واستخدام وحماية معلوماتك.</p>
+        <!-- Arabic Content -->
+        <div id="arabic" class="content active" dir="rtl">
+            <div class="header">
+                <div class="logo">
+                    <span>🏥</span>
+                </div>
+                <h1>HealthScan</h1>
+                <p class="tagline">
+                    امسح الطعام والأدوية لتحقيق خيارات صحية أفضل
+                </p>
+                <div class="privacy-badge">
+                    <span>🔒</span>
+                    <p>لا نجمع أي بيانات شخصية - خصوصيتك مضمونة 100%</p>
+                </div>
+            </div>
 
-        <h2>1. المعلومات التي نجمعها</h2>
-        <ul>
-            <li><strong>معلومات المنتج:</strong> الباركود، اسم المنتج، المكونات، التقييم الغذائي.</li>
-            <li><strong>معلومات الاستخدام:</strong> المنتجات التي قمت بمسحها، وتاريخ ووقت المسح.</li>
-            <li><strong>معلومات الجهاز:</strong> نوع الجهاز، نظام التشغيل، ومعرف الجهاز الفريد.</li>
-        </ul>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">📷</div>
+                    <h3>مسح الباركود</h3>
+                    <p>امسح أي منتج غذائي أو دواء للحصول على معلومات فورية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>تحليل المكونات</h3>
+                    <p>تعرف على المكونات الضارة والمسببة للحساسية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>معلومات الأدوية</h3>
+                    <p>تحذيرات، آثار جانبية، ومعلومات دقيقة عن الأدوية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>بدائل صحية</h3>
+                    <p>احصل على اقتراحات لمنتجات بديلة أكثر صحة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>ترجمة فورية</h3>
+                    <p>ترجمة المعلومات لأكثر من 15 لغة مختلفة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>تقييم Nutri-Score</h3>
+                    <p>تعرف على جودة المنتج من A إلى E</p>
+                </div>
+            </div>
 
-        <h2>2. كيف نستخدم معلوماتك</h2>
-        <ul>
-            <li>عرض معلومات المنتج الغذائي والصحي.</li>
-            <li>تقديم توصيات بديلة للمنتجات السيئة.</li>
-            <li>تحسين أداء التطبيق وتجربة المستخدم.</li>
-            <li>تخزين سجل المنتجات الممسوحة محلياً على جهازك.</li>
-        </ul>
+            <div class="permissions">
+                <h3>
+                    <span>🔑</span>
+                    الأذونات التي يستخدمها التطبيق
+                </h3>
+                <div class="permission-list">
+                    <div class="permission-item">
+                        <span>📷</span> الكاميرا (للمسح فقط)
+                    </div>
+                    <div class="permission-item">
+                        <span>🌐</span> الإنترنت (للبحث عن المعلومات)
+                    </div>
+                </div>
+                <p style="color: #854d0e; font-size: 13px; margin-top: 15px;">
+                    ✅ لا نطلب أي أذونات أخرى. لا نصل إلى صورك، ملفاتك، جهات اتصالك، أو موقعك.
+                </p>
+            </div>
 
-        <h2>3. مشاركة المعلومات</h2>
-        <p>نحن لا نشارك معلوماتك الشخصية مع أطراف ثالثة. يتم تخزين جميع البيانات محلياً على جهازك ولا يتم رفعها إلى خوادم خارجية.</p>
+            <div class="api-section">
+                <h3>
+                    <span>🔗</span>
+                    خدمات الطرف الثالث المستخدمة
+                </h3>
+                <div class="api-list">
+                    <div class="api-item">world.openfoodfacts.org</div>
+                    <div class="api-item">world.openbeautyfacts.org</div>
+                    <div class="api-item">world.openpetfoodfacts.org</div>
+                    <div class="api-item">api.mymemory.translated.net</div>
+                    <div class="api-item">clinicaltables.nlm.nih.gov</div>
+                    <div class="api-item">api.fda.gov</div>
+                    <div class="api-item">dailymed.nlm.nih.gov</div>
+                    <div class="api-item">en.wikipedia.org</div>
+                </div>
+                <p style="color: #1e40af; font-size: 13px; margin-top: 15px;">
+                    📡 هذه الخدمات تستخدم فقط للحصول على معلومات المنتجات والترجمة. لا يتم إرسال أي بيانات شخصية.
+                </p>
+            </div>
 
-        <h2>4. خدمات الطرف الثالث</h2>
-        <p>يستخدم التطبيق الخدمات التالية:</p>
-        <ul>
-            <li><strong>Open Food Facts API:</strong> للحصول على معلومات المنتجات الغذائية.</li>
-            <li><strong>MyMemory Translation API:</strong> لترجمة المعلومات (اختياري).</li>
-            <li><strong>Wikipedia API:</strong> للبحث عن معلومات إضافية عن المكونات.</li>
-        </ul>
+            <div style="text-align: center;">
+                <a href="#" class="cta-button" onclick="return false;">
+                    📲 حمّل التطبيق الآن
+                </a>
+            </div>
 
-        <h2>5. الأذونات</h2>
-        <ul>
-            <li><strong>الكاميرا:</strong> لمسح الباركود.</li>
-            <li><strong>الإنترنت:</strong> للبحث عن معلومات المنتجات.</li>
-        </ul>
+            <div class="footer">
+                <p>© 2024 HealthScan - جميع الحقوق محفوظة</p>
+                <p style="margin-top: 10px; font-size: 12px;">
+                    هذا التطبيق لا يقدم استشارة طبية. استشر طبيبك قبل استخدام أي دواء.
+                </p>
+            </div>
+        </div>
 
-        <h2>6. حماية البيانات</h2>
-        <p>جميع البيانات المخزنة محلياً على جهازك فقط. لا يتم نقل أي بيانات إلى خوادم خارجية.</p>
+        <!-- English Content -->
+        <div id="english" class="content" dir="ltr">
+            <div class="header">
+                <div class="logo">
+                    <span>🏥</span>
+                </div>
+                <h1>HealthScan</h1>
+                <p class="tagline">
+                    Scan food & medicine to make healthier choices
+                </p>
+                <div class="privacy-badge">
+                    <span>🔒</span>
+                    <p>We collect NO personal data - Your privacy is 100% guaranteed</p>
+                </div>
+            </div>
 
-        <h2>7. حقوق المستخدم</h2>
-        <ul>
-            <li>يمكنك مسح سجل المنتجات في أي وقت من خلال إعدادات التطبيق.</li>
-            <li>يمكنك إلغاء تثبيت التطبيق لحذف جميع البيانات المخزنة.</li>
-        </ul>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">📷</div>
+                    <h3>Barcode Scanner</h3>
+                    <p>Scan any food product or medicine to get instant information</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Ingredient Analysis</h3>
+                    <p>Identify harmful ingredients and allergens</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>Medicine Information</h3>
+                    <p>Warnings, side effects, and accurate medication details</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Healthy Alternatives</h3>
+                    <p>Get suggestions for healthier product alternatives</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Instant Translation</h3>
+                    <p>Translate information into over 15 languages</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Nutri-Score Rating</h3>
+                    <p>Know product quality from A to E</p>
+                </div>
+            </div>
 
-        <h2>8. تغييرات سياسة الخصوصية</h2>
-        <p>قد نقوم بتحديث هذه السياسة من وقت لآخر. سيتم إشعارك بأي تغييرات جوهرية.</p>
+            <div class="permissions">
+                <h3>
+                    <span>🔑</span>
+                    Permissions Used by the App
+                </h3>
+                <div class="permission-list">
+                    <div class="permission-item">
+                        <span>📷</span> Camera (for scanning only)
+                    </div>
+                    <div class="permission-item">
+                        <span>🌐</span> Internet (to search for information)
+                    </div>
+                </div>
+                <p style="color: #854d0e; font-size: 13px; margin-top: 15px;">
+                    ✅ No other permissions are requested. We do not access your photos, files, contacts, or location.
+                </p>
+            </div>
 
-        <h2>9. الاتصال بنا</h2>
-        <p>إذا كان لديك أي استفسار حول سياسة الخصوصية، يرجى التواصل معنا عبر البريد الإلكتروني: support@foodscanner.com</p>
+            <div class="api-section">
+                <h3>
+                    <span>🔗</span>
+                    Third-Party Services Used
+                </h3>
+                <div class="api-list">
+                    <div class="api-item">world.openfoodfacts.org</div>
+                    <div class="api-item">world.openbeautyfacts.org</div>
+                    <div class="api-item">world.openpetfoodfacts.org</div>
+                    <div class="api-item">api.mymemory.translated.net</div>
+                    <div class="api-item">clinicaltables.nlm.nih.gov</div>
+                    <div class="api-item">api.fda.gov</div>
+                    <div class="api-item">dailymed.nlm.nih.gov</div>
+                    <div class="api-item">en.wikipedia.org</div>
+                </div>
+                <p style="color: #1e40af; font-size: 13px; margin-top: 15px;">
+                    📡 These services are used only to fetch product information and translations. No personal data is sent.
+                </p>
+            </div>
 
-        <div class="footer">
-            © 2026 FoodScanner - جميع الحقوق محفوظة
+            <div style="text-align: center;">
+                <a href="#" class="cta-button" onclick="return false;">
+                    📲 Download App Now
+                </a>
+            </div>
+
+            <div class="footer">
+                <p>© 2024 HealthScan - All Rights Reserved</p>
+                <p style="margin-top: 10px; font-size: 12px;">
+                    This app does not provide medical advice. Consult your doctor before using any medication.
+                </p>
+            </div>
         </div>
     </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // Update active class on buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (lang === 'ar') {
+                document.querySelector('.lang-btn:first-child').classList.add('active');
+                document.getElementById('arabic').classList.add('active');
+                document.getElementById('english').classList.remove('active');
+                document.documentElement.dir = 'rtl';
+            } else {
+                document.querySelector('.lang-btn:last-child').classList.add('active');
+                document.getElementById('english').classList.add('active');
+                document.getElementById('arabic').classList.remove('active');
+                document.documentElement.dir = 'ltr';
+            }
+        }
+    </script>
 </body>
 </html>
