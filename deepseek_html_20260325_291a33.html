@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthScan - عن التطبيق</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Language Switcher */
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 20px 20px 0 20px;
+            background: white;
+        }
+
+        .lang-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: #1e293b;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.05);
+            background: #e2e8f0;
+        }
+
+        /* Content Sections */
+        .content {
+            display: none;
+            padding: 40px 50px 50px 50px;
+        }
+
+        .content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 25px -5px rgba(102, 126, 234, 0.4);
+        }
+
+        .logo span {
+            font-size: 56px;
+        }
+
+        h1 {
+            font-size: 42px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .version {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #4a5568;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Info Sections */
+        .info-section {
+            background: #f1f5f9;
+            border-radius: 24px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .info-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .info-section p {
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #334155;
+        }
+
+        .info-list li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Permissions */
+        .permissions {
+            background: #fefce8;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #eab308;
+        }
+
+        .permissions h3 {
+            color: #854d0e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .permission-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .permission-item {
+            background: white;
+            padding: 10px 18px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #1e293b;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* API Section */
+        .api-section {
+            background: #eff6ff;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .api-section h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .api-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .api-item {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-family: monospace;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            margin: 40px 0 20px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 24px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px -5px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px -5px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .tagline {
+                font-size: 15px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-section h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLanguage('ar')">🇸🇦 العربية</button>
+            <button class="lang-btn" onclick="switchLanguage('en')">🇬🇧 English</button>
+        </div>
+
+        <!-- Arabic Content -->
+        <div id="arabic" class="content active" dir="rtl">
+            <div class="header">
+                <div class="logo">
+                    <span>🏥</span>
+                </div>
+                <h1>HealthScan</h1>
+                <div class="version">الإصدار 1.0</div>
+                <p class="tagline">
+                    رفيقك الذكي لصحة أفضل - امسح، حلل، اختر بحكمة
+                </p>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">📷</div>
+                    <h3>مسح الباركود</h3>
+                    <p>امسح أي منتج غذائي أو دواء للحصول على معلومات فورية وشاملة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>تحليل المكونات</h3>
+                    <p>تعرف على المكونات الضارة، المسببات للحساسية، والمضافات الغذائية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>معلومات الأدوية</h3>
+                    <p>تحذيرات، آثار جانبية، والاسم العلمي للأدوية من مصادر موثوقة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>بدائل صحية</h3>
+                    <p>احصل على اقتراحات لمنتجات بديلة أكثر صحة مع تقييمات Nutri-Score</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>ترجمة فورية</h3>
+                    <p>ترجمة المعلومات لأكثر من 15 لغة مختلفة لتسهيل الفهم</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>تقييم Nutri-Score</h3>
+                    <p>تعرف على جودة المنتج من خلال نظام Nutri-Score العالمي (A إلى E)</p>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2>
+                    <span>🎯</span>
+                    ما الذي يقدمه لك HealthScan؟
+                </h2>
+                <ul class="info-list">
+                    <li>تحليل دقيق للمكونات الغذائية والمضافات</li>
+                    <li>الكشف عن المواد المسببة للحساسية مثل الجلوتين واللاكتوز</li>
+                    <li>معلومات شاملة عن الأدوية والتحذيرات</li>
+                    <li>بدائل صحية للمنتجات ذات التقييم المنخفض</li>
+                    <li>ترجمة المعلومات إلى لغتك المفضلة</li>
+                    <li>سجل تاريخي للمنتجات التي قمت بمسحها</li>
+                </ul>
+            </div>
+
+            <div class="permissions">
+                <h3>
+                    <span>🔑</span>
+                    الأذونات التي يستخدمها التطبيق
+                </h3>
+                <div class="permission-list">
+                    <div class="permission-item">
+                        <span>📷</span> الكاميرا (للمسح فقط)
+                    </div>
+                    <div class="permission-item">
+                        <span>🌐</span> الإنترنت (للبحث عن المعلومات)
+                    </div>
+                </div>
+                <p style="color: #854d0e; font-size: 13px; margin-top: 15px;">
+                    ✅ لا نطلب أي أذونات أخرى. لا نصل إلى صورك، ملفاتك، جهات اتصالك، أو موقعك.
+                </p>
+            </div>
+
+            <div class="api-section">
+                <h3>
+                    <span>🔗</span>
+                    مصادر المعلومات
+                </h3>
+                <div class="api-list">
+                    <div class="api-item">Open Food Facts</div>
+                    <div class="api-item">Open Beauty Facts</div>
+                    <div class="api-item">Open Pet Food Facts</div>
+                    <div class="api-item">FDA (الأدوية)</div>
+                    <div class="api-item">DailyMed</div>
+                    <div class="api-item">RXNorm</div>
+                    <div class="api-item">Wikipedia</div>
+                    <div class="api-item">MyMemory Translation</div>
+                </div>
+                <p style="color: #1e40af; font-size: 13px; margin-top: 15px;">
+                    📡 نعتمد على مصادر مفتوحة وموثوقة للحصول على المعلومات الدقيقة.
+                </p>
+            </div>
+
+            <div class="cta-section">
+                <h3 style="margin-bottom: 15px; color: #1e293b;">🚀 جرب HealthScan الآن</h3>
+                <p style="color: #64748b; margin-bottom: 20px;">امسح أي منتج واكتشف ما يحتويه بنقرة واحدة</p>
+                <a href="#" class="cta-button" onclick="return false;">📲 ابدأ المسح الآن</a>
+            </div>
+
+            <div class="footer">
+                <p>© 2024 HealthScan - جميع الحقوق محفوظة</p>
+                <p style="margin-top: 8px;">
+                    هذا التطبيق لا يقدم استشارة طبية. استشر طبيبك قبل استخدام أي دواء.
+                </p>
+            </div>
+        </div>
+
+        <!-- English Content -->
+        <div id="english" class="content" dir="ltr">
+            <div class="header">
+                <div class="logo">
+                    <span>🏥</span>
+                </div>
+                <h1>HealthScan</h1>
+                <div class="version">Version 1.0</div>
+                <p class="tagline">
+                    Your Smart Health Companion - Scan, Analyze, Choose Wisely
+                </p>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">📷</div>
+                    <h3>Barcode Scanner</h3>
+                    <p>Scan any food product or medicine to get instant and comprehensive information</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Ingredient Analysis</h3>
+                    <p>Identify harmful ingredients, allergens, and food additives</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>Medicine Information</h3>
+                    <p>Warnings, side effects, and generic names from trusted sources</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Healthy Alternatives</h3>
+                    <p>Get suggestions for healthier product alternatives with Nutri-Score ratings</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Instant Translation</h3>
+                    <p>Translate information into over 15 languages for better understanding</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Nutri-Score Rating</h3>
+                    <p>Know product quality through the global Nutri-Score system (A to E)</p>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2>
+                    <span>🎯</span>
+                    What Does HealthScan Offer?
+                </h2>
+                <ul class="info-list">
+                    <li>Detailed analysis of food ingredients and additives</li>
+                    <li>Detection of allergens like gluten and lactose</li>
+                    <li>Comprehensive medicine information and warnings</li>
+                    <li>Healthy alternatives for low-rated products</li>
+                    <li>Translate information to your preferred language</li>
+                    <li>History log of all scanned products</li>
+                </ul>
+            </div>
+
+            <div class="permissions">
+                <h3>
+                    <span>🔑</span>
+                    Permissions Used
+                </h3>
+                <div class="permission-list">
+                    <div class="permission-item">
+                        <span>📷</span> Camera (for scanning only)
+                    </div>
+                    <div class="permission-item">
+                        <span>🌐</span> Internet (to search for information)
+                    </div>
+                </div>
+                <p style="color: #854d0e; font-size: 13px; margin-top: 15px;">
+                    ✅ No other permissions are requested. We do not access your photos, files, contacts, or location.
+                </p>
+            </div>
+
+            <div class="api-section">
+                <h3>
+                    <span>🔗</span>
+                    Information Sources
+                </h3>
+                <div class="api-list">
+                    <div class="api-item">Open Food Facts</div>
+                    <div class="api-item">Open Beauty Facts</div>
+                    <div class="api-item">Open Pet Food Facts</div>
+                    <div class="api-item">FDA (Medicines)</div>
+                    <div class="api-item">DailyMed</div>
+                    <div class="api-item">RXNorm</div>
+                    <div class="api-item">Wikipedia</div>
+                    <div class="api-item">MyMemory Translation</div>
+                </div>
+                <p style="color: #1e40af; font-size: 13px; margin-top: 15px;">
+                    📡 We rely on open and trusted sources to provide accurate information.
+                </p>
+            </div>
+
+            <div class="cta-section">
+                <h3 style="margin-bottom: 15px; color: #1e293b;">🚀 Try HealthScan Now</h3>
+                <p style="color: #64748b; margin-bottom: 20px;">Scan any product and discover what's inside with one click</p>
+                <a href="#" class="cta-button" onclick="return false;">📲 Start Scanning Now</a>
+            </div>
+
+            <div class="footer">
+                <p>© 2024 HealthScan - All Rights Reserved</p>
+                <p style="margin-top: 8px;">
+                    This app does not provide medical advice. Consult your doctor before using any medication.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // Update active class on buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (lang === 'ar') {
+                document.querySelector('.lang-btn:first-child').classList.add('active');
+                document.getElementById('arabic').classList.add('active');
+                document.getElementById('english').classList.remove('active');
+                document.documentElement.dir = 'rtl';
+            } else {
+                document.querySelector('.lang-btn:last-child').classList.add('active');
+                document.getElementById('english').classList.add('active');
+                document.getElementById('arabic').classList.remove('active');
+                document.documentElement.dir = 'ltr';
+            }
+        }
+    </script>
+</body>
+</html>
