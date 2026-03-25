@@ -342,42 +342,56 @@
         }
 
         /* Team */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
+        .team-section {
             margin: 30px 0;
+            text-align: center;
         }
 
         .team-card {
+            max-width: 350px;
+            margin: 0 auto;
             text-align: center;
-            padding: 20px;
-            background: #f8fafc;
-            border-radius: 20px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
         }
 
         .team-avatar {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 32px;
+            margin: 0 auto 20px;
+            font-size: 48px;
             color: white;
         }
 
         .team-name {
+            font-size: 24px;
             font-weight: bold;
             color: #1e293b;
+            margin-bottom: 8px;
         }
 
         .team-role {
-            font-size: 12px;
+            font-size: 16px;
             color: #667eea;
-            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        .team-desc {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
         /* FAQ */
@@ -476,6 +490,14 @@
             .roadmap-item {
                 flex-direction: column;
                 gap: 10px;
+            }
+            
+            .team-card {
+                padding: 20px;
+            }
+            
+            .team-name {
+                font-size: 20px;
             }
         }
     </style>
@@ -656,6 +678,21 @@
                 </div>
             </div>
 
+            <!-- الفريق -->
+            <div class="section">
+                <h2 class="section-title">👤 المطور</h2>
+                <div class="team-section">
+                    <div class="team-card">
+                        <div class="team-avatar">👨‍💻</div>
+                        <div class="team-name">ADIL AH</div>
+                        <div class="team-role">مطور ومصمم التطبيق</div>
+                        <div class="team-desc">
+                            مطور متخصص في تطبيقات Android، يعمل على تطوير تطبيقات صحية مبتكرة تساعد المستخدمين على اتخاذ قرارات صحية أفضل.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- الأسئلة الشائعة -->
             <div class="section">
                 <h2 class="section-title">❓ الأسئلة الشائعة</h2>
@@ -698,39 +735,18 @@
                 </div>
             </div>
 
-            <!-- الفريق -->
-            <div class="section">
-                <h2 class="section-title">👥 فريق العمل</h2>
-                <div class="team-grid">
-                    <div class="team-card">
-                        <div class="team-avatar">👨‍💻</div>
-                        <div class="team-name">فريق HealthScan</div>
-                        <div class="team-role">تطوير وتصميم</div>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">📊</div>
-                        <div class="team-name">مصادر البيانات</div>
-                        <div class="team-role">Open Food Facts & FDA</div>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">🔬</div>
-                        <div class="team-name">استشاريون</div>
-                        <div class="team-role">خبراء تغذية وصيدلة</div>
-                    </div>
-                </div>
-            </div>
-
             <!-- دعوة للتواصل -->
             <div class="cta-section">
                 <h3>💡 لديك اقتراح أو استفسار؟</h3>
                 <p>نحن نرحب بملاحظاتك واقتراحاتك لتطوير التطبيق بشكل أفضل</p>
-                <a href="mailto:support@healthscan.com" class="cta-button">📧 تواصل معنا</a>
+                <a href="mailto:adil.ah@healthscan.com" class="cta-button">📧 تواصل معنا</a>
             </div>
 
             <div class="footer">
-                <p>© 2024 HealthScan - جميع الحقوق محفوظة</p>
+                <p>© 2025 HealthScan - جميع الحقوق محفوظة</p>
                 <p style="margin-top: 8px;">هذا التطبيق لا يقدم استشارة طبية. استشر طبيبك قبل استخدام أي دواء.</p>
                 <p style="margin-top: 5px; font-size: 11px;">إصدار التطبيق 1.0 | آخر تحديث: مارس 2025</p>
+                <p style="margin-top: 5px; font-size: 11px;">تطوير: ADIL AH</p>
             </div>
         </div>
 
@@ -902,6 +918,21 @@
                 </div>
             </div>
 
+            <!-- Developer -->
+            <div class="section">
+                <h2 class="section-title">👤 Developer</h2>
+                <div class="team-section">
+                    <div class="team-card">
+                        <div class="team-avatar">👨‍💻</div>
+                        <div class="team-name">ADIL AH</div>
+                        <div class="team-role">App Developer & Designer</div>
+                        <div class="team-desc">
+                            Specialized in Android app development, creating innovative health applications that help users make better health decisions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- FAQ -->
             <div class="section">
                 <h2 class="section-title">❓ Frequently Asked Questions</h2>
@@ -944,39 +975,18 @@
                 </div>
             </div>
 
-            <!-- Team -->
-            <div class="section">
-                <h2 class="section-title">👥 Our Team</h2>
-                <div class="team-grid">
-                    <div class="team-card">
-                        <div class="team-avatar">👨‍💻</div>
-                        <div class="team-name">HealthScan Team</div>
-                        <div class="team-role">Development & Design</div>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">📊</div>
-                        <div class="team-name">Data Sources</div>
-                        <div class="team-role">Open Food Facts & FDA</div>
-                    </div>
-                    <div class="team-card">
-                        <div class="team-avatar">🔬</div>
-                        <div class="team-name">Consultants</div>
-                        <div class="team-role">Nutrition & Pharmacy Experts</div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Contact -->
             <div class="cta-section">
                 <h3>💡 Have a suggestion or question?</h3>
                 <p>We welcome your feedback to help improve the app</p>
-                <a href="mailto:support@healthscan.com" class="cta-button">📧 Contact Us</a>
+                <a href="mailto:adil.ah@healthscan.com" class="cta-button">📧 Contact Us</a>
             </div>
 
             <div class="footer">
-                <p>© 2024 HealthScan - All Rights Reserved</p>
+                <p>© 2025 HealthScan - All Rights Reserved</p>
                 <p style="margin-top: 8px;">This app does not provide medical advice. Consult your doctor before using any medication.</p>
                 <p style="margin-top: 5px; font-size: 11px;">App Version 1.0 | Last Updated: March 2025</p>
+                <p style="margin-top: 5px; font-size: 11px;">Developed by: ADIL AH</p>
             </div>
         </div>
     </div>
