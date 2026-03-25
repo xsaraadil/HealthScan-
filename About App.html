@@ -15,7 +15,7 @@
             font-family: 'Segoe UI', 'Tahoma', 'Cairo', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
         .container {
@@ -91,6 +91,13 @@
             justify-content: center;
             margin: 0 auto 20px;
             box-shadow: 0 10px 25px -5px rgba(102, 126, 234, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .logo span {
@@ -113,7 +120,7 @@
             border-radius: 30px;
             font-size: 14px;
             color: #64748b;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .tagline {
@@ -124,19 +131,38 @@
             margin: 0 auto;
         }
 
-        /* Features Grid */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+        /* Section Styles */
+        .section {
             margin: 50px 0;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #1e293b;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #334155;
+            margin: 25px 0 15px 0;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
         }
 
         .feature-card {
             background: #f8fafc;
             border-radius: 20px;
             padding: 25px;
-            text-align: center;
             transition: all 0.3s ease;
             border: 1px solid #e2e8f0;
         }
@@ -148,12 +174,12 @@
         }
 
         .feature-icon {
-            font-size: 48px;
+            font-size: 40px;
             margin-bottom: 15px;
         }
 
         .feature-card h3 {
-            font-size: 20px;
+            font-size: 18px;
             color: #1e293b;
             margin-bottom: 10px;
         }
@@ -164,47 +190,82 @@
             font-size: 14px;
         }
 
-        /* Info Sections */
-        .info-section {
-            background: #f1f5f9;
-            border-radius: 24px;
-            padding: 30px;
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            color: #4a5568;
+            border: 1px solid #667eea30;
+        }
+
+        /* API List */
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .api-card {
+            background: #eff6ff;
+            border-radius: 16px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .api-card:hover {
+            transform: translateY(-3px);
+            background: #dbeafe;
+        }
+
+        .api-name {
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
+
+        .api-desc {
+            font-size: 12px;
+            color: #475569;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
             margin: 30px 0;
         }
 
-        .info-section h2 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 24px;
-            color: #1e293b;
-            margin-bottom: 20px;
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 20px;
+            padding: 25px;
         }
 
-        .info-section p {
-            color: #475569;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .info-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .info-list li {
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #334155;
-        }
-
-        .info-list li::before {
-            content: "✓";
-            color: #10b981;
+        .stat-number {
+            font-size: 32px;
             font-weight: bold;
-            font-size: 18px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 8px;
         }
 
         /* Permissions */
@@ -214,14 +275,6 @@
             padding: 25px;
             margin: 30px 0;
             border-left: 4px solid #eab308;
-        }
-
-        .permissions h3 {
-            color: #854d0e;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .permission-list {
@@ -239,70 +292,161 @@
             align-items: center;
             gap: 8px;
             font-size: 14px;
-            color: #1e293b;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
-        /* API Section */
-        .api-section {
-            background: #eff6ff;
-            border-radius: 20px;
-            padding: 25px;
+        /* Roadmap */
+        .roadmap {
             margin: 30px 0;
         }
 
-        .api-section h3 {
-            color: #1e40af;
-            margin-bottom: 15px;
+        .roadmap-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .roadmap-status {
+            width: 80px;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-align: center;
+            height: fit-content;
+        }
+
+        .status-done {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-progress {
+            background: #fed7aa;
+            color: #9a3412;
+        }
+
+        .status-planned {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .roadmap-content h4 {
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .roadmap-content p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .team-card {
+            text-align: center;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 20px;
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 32px;
+            color: white;
         }
 
-        .api-list {
+        .team-name {
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .team-role {
+            font-size: 12px;
+            color: #667eea;
+            margin-top: 5px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin: 15px 0;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #1e293b;
+            cursor: pointer;
             display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .api-item {
-            background: white;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-family: monospace;
-            color: #2563eb;
-            border: 1px solid #bfdbfe;
+        .faq-question:hover {
+            color: #667eea;
+        }
+
+        .faq-answer {
+            color: #64748b;
+            padding-top: 10px;
+            display: none;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .faq-answer.show {
+            display: block;
         }
 
         /* CTA */
         .cta-section {
             text-align: center;
             margin: 40px 0 20px;
-            padding: 30px;
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            border-radius: 24px;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 30px;
+            color: white;
+        }
+
+        .cta-section h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            opacity: 0.9;
+            margin-bottom: 20px;
         }
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            font-size: 18px;
+            background: white;
+            color: #667eea;
+            font-size: 16px;
             font-weight: 600;
-            padding: 14px 35px;
+            padding: 12px 30px;
             border-radius: 50px;
             text-decoration: none;
             transition: all 0.3s ease;
-            margin: 10px 0;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 20px -5px rgba(102, 126, 234, 0.4);
         }
 
         .cta-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 15px 30px -5px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         /* Footer */
@@ -325,16 +469,13 @@
                 font-size: 28px;
             }
             
-            .tagline {
-                font-size: 15px;
+            .section-title {
+                font-size: 22px;
             }
             
-            .features {
-                grid-template-columns: 1fr;
-            }
-            
-            .info-section h2 {
-                font-size: 20px;
+            .roadmap-item {
+                flex-direction: column;
+                gap: 10px;
             }
         }
     </style>
@@ -355,107 +496,241 @@
                 <h1>HealthScan</h1>
                 <div class="version">الإصدار 1.0</div>
                 <p class="tagline">
-                    رفيقك الذكي لصحة أفضل - امسح، حلل، اختر بحكمة
+                    رفيقك الذكي لصحة أفضل - امسح الباركود، حلل المكونات، اختر بحكمة
                 </p>
             </div>
 
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">📷</div>
-                    <h3>مسح الباركود</h3>
-                    <p>امسح أي منتج غذائي أو دواء للحصول على معلومات فورية وشاملة</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔬</div>
-                    <h3>تحليل المكونات</h3>
-                    <p>تعرف على المكونات الضارة، المسببات للحساسية، والمضافات الغذائية</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💊</div>
-                    <h3>معلومات الأدوية</h3>
-                    <p>تحذيرات، آثار جانبية، والاسم العلمي للأدوية من مصادر موثوقة</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>بدائل صحية</h3>
-                    <p>احصل على اقتراحات لمنتجات بديلة أكثر صحة مع تقييمات Nutri-Score</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>ترجمة فورية</h3>
-                    <p>ترجمة المعلومات لأكثر من 15 لغة مختلفة لتسهيل الفهم</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3>تقييم Nutri-Score</h3>
-                    <p>تعرف على جودة المنتج من خلال نظام Nutri-Score العالمي (A إلى E)</p>
-                </div>
+            <!-- رؤية التطبيق -->
+            <div class="section">
+                <h2 class="section-title">🎯 رؤيتنا</h2>
+                <p style="color: #475569; line-height: 1.8; margin-top: 15px;">
+                    نؤمن أن المعرفة هي أساس الصحة الجيدة. لهذا قمنا بتطوير HealthScan ليكون جسراً بين المستخدم والمعلومات الدقيقة حول المنتجات التي يستهلكها يومياً. 
+                    نهدف إلى تمكين المستخدمين من اتخاذ قرارات صحية واعية من خلال توفير معلومات شاملة وسهلة الفهم عن الطعام والأدوية.
+                </p>
             </div>
 
-            <div class="info-section">
-                <h2>
-                    <span>🎯</span>
-                    ما الذي يقدمه لك HealthScan؟
-                </h2>
-                <ul class="info-list">
-                    <li>تحليل دقيق للمكونات الغذائية والمضافات</li>
-                    <li>الكشف عن المواد المسببة للحساسية مثل الجلوتين واللاكتوز</li>
-                    <li>معلومات شاملة عن الأدوية والتحذيرات</li>
-                    <li>بدائل صحية للمنتجات ذات التقييم المنخفض</li>
-                    <li>ترجمة المعلومات إلى لغتك المفضلة</li>
-                    <li>سجل تاريخي للمنتجات التي قمت بمسحها</li>
-                </ul>
-            </div>
-
-            <div class="permissions">
-                <h3>
-                    <span>🔑</span>
-                    الأذونات التي يستخدمها التطبيق
-                </h3>
-                <div class="permission-list">
-                    <div class="permission-item">
-                        <span>📷</span> الكاميرا (للمسح فقط)
+            <!-- مميزات التطبيق بالتفصيل -->
+            <div class="section">
+                <h2 class="section-title">✨ مميزات التطبيق</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📷</div>
+                        <h3>مسح الباركود الفوري</h3>
+                        <p>امسح أي باركود للمنتجات الغذائية أو الأدوية، واحصل على معلومات فورية عن المنتج في أقل من ثانية.</p>
                     </div>
-                    <div class="permission-item">
-                        <span>🌐</span> الإنترنت (للبحث عن المعلومات)
+                    <div class="feature-card">
+                        <div class="feature-icon">🔬</div>
+                        <h3>تحليل المكونات الذكي</h3>
+                        <p>تحليل تفصيلي للمكونات مع تحديد المواد الضارة، المسببات للحساسية، والمضافات الصناعية مع شرح تأثيرها.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💊</div>
+                        <h3>موسوعة الأدوية</h3>
+                        <p>معلومات دقيقة عن الأدوية: الاسم العلمي، التحذيرات، الآثار الجانبية، والاستخدامات المتوقعة.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>نظام البدائل الصحية</h3>
+                        <p>إذا كان المنتج الذي تبحث عنه غير صحي، نقترح عليك بدائل أفضل مع مقارنة التقييمات الغذائية.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>ترجمة فورية بـ 15 لغة</h3>
+                        <p>ترجمة جميع المعلومات إلى لغتك المفضلة (العربية، الإنجليزية، الفرنسية، الألمانية، وغيرها).</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>تقييم Nutri-Score</h3>
+                        <p>نظام Nutri-Score العالمي (A إلى E) لتقييم جودة المنتج الغذائي بسهولة.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📜</div>
+                        <h3>سجل المسح الضوئي</h3>
+                        <p>تتبع جميع المنتجات التي قمت بمسحها سابقاً مع تاريخ ووقت المسح.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚠️</div>
+                        <h3>تحذيرات الحساسية</h3>
+                        <p>اكتشاف المكونات المسببة للحساسية مثل الجلوتين، اللاكتوز، المكسرات، والصويا.</p>
                     </div>
                 </div>
-                <p style="color: #854d0e; font-size: 13px; margin-top: 15px;">
-                    ✅ لا نطلب أي أذونات أخرى. لا نصل إلى صورك، ملفاتك، جهات اتصالك، أو موقعك.
-                </p>
             </div>
 
-            <div class="api-section">
-                <h3>
-                    <span>🔗</span>
-                    مصادر المعلومات
-                </h3>
-                <div class="api-list">
-                    <div class="api-item">Open Food Facts</div>
-                    <div class="api-item">Open Beauty Facts</div>
-                    <div class="api-item">Open Pet Food Facts</div>
-                    <div class="api-item">FDA (الأدوية)</div>
-                    <div class="api-item">DailyMed</div>
-                    <div class="api-item">RXNorm</div>
-                    <div class="api-item">Wikipedia</div>
-                    <div class="api-item">MyMemory Translation</div>
+            <!-- التقنيات المستخدمة -->
+            <div class="section">
+                <h2 class="section-title">⚙️ التقنيات المستخدمة</h2>
+                <div class="tech-stack">
+                    <span class="tech-item">📱 Android (Java)</span>
+                    <span class="tech-item">🔍 ZXing Barcode Scanner</span>
+                    <span class="tech-item">🌐 Retrofit & OkHttp</span>
+                    <span class="tech-item">📸 Glide</span>
+                    <span class="tech-item">🗄️ SharedPreferences</span>
+                    <span class="tech-item">🔄 ViewPager2</span>
+                    <span class="tech-item">🎨 Material Design</span>
                 </div>
-                <p style="color: #1e40af; font-size: 13px; margin-top: 15px;">
-                    📡 نعتمد على مصادر مفتوحة وموثوقة للحصول على المعلومات الدقيقة.
-                </p>
             </div>
 
+            <!-- مصادر البيانات -->
+            <div class="section">
+                <h2 class="section-title">📡 مصادر البيانات</h2>
+                <div class="api-grid">
+                    <div class="api-card">
+                        <div class="api-name">Open Food Facts</div>
+                        <div class="api-desc">أكبر قاعدة بيانات مفتوحة للمنتجات الغذائية حول العالم</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">Open Beauty Facts</div>
+                        <div class="api-desc">معلومات عن منتجات التجميل والعناية الشخصية</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">FDA (OpenFDA)</div>
+                        <div class="api-desc">معلومات رسمية عن الأدوية من إدارة الغذاء والدواء الأمريكية</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">DailyMed</div>
+                        <div class="api-desc">معلومات شاملة عن الأدوية والتحذيرات</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">RXNorm</div>
+                        <div class="api-desc">الأسماء العلمية والبدائل الدوائية</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">Wikipedia</div>
+                        <div class="api-desc">معلومات إضافية عن المكونات والمواد الغذائية</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">MyMemory Translation</div>
+                        <div class="api-desc">خدمة ترجمة مجانية تدعم أكثر من 15 لغة</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- إحصائيات -->
+            <div class="section">
+                <h2 class="section-title">📊 إحصائيات HealthScan</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">3,000,000+</div>
+                        <div class="stat-label">منتج في قاعدة البيانات</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">لغة مدعومة للترجمة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">مصادر بيانات موثوقة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">&lt; 1s</div>
+                        <div class="stat-label">وقت الاستجابة</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- خارطة الطريق -->
+            <div class="section">
+                <h2 class="section-title">🗺️ خارطة الطريق</h2>
+                <div class="roadmap">
+                    <div class="roadmap-item">
+                        <div class="roadmap-status status-done">✅ منجز</div>
+                        <div class="roadmap-content">
+                            <h4>الإصدار 1.0 - الإطلاق الأول</h4>
+                            <p>مسح المنتجات الغذائية والأدوية، تحليل المكونات، الترجمة، سجل المسح.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-status status-progress">🔄 قيد التطوير</div>
+                        <div class="roadmap-content">
+                            <h4>الإصدار 1.5 - ميزات جديدة</h4>
+                            <p>إضافة نظام المفضلة، تحليل أكثر دقة للمكونات، دعم المزيد من اللغات.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-status status-planned">📅 مخطط له</div>
+                        <div class="roadmap-content">
+                            <h4>الإصدار 2.0 - تحديث كبير</h4>
+                            <p>إشعارات ذكية، تكامل مع أجهزة الصحة، وضع عدم الاتصال، نظام توصيات مخصص.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الأسئلة الشائعة -->
+            <div class="section">
+                <h2 class="section-title">❓ الأسئلة الشائعة</h2>
+                <div class="faq">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>هل التطبيق مجاني بالكامل؟</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="faq-answer">نعم، HealthScan مجاني تماماً ولا يحتوي على أي إعلانات. نحن نؤمن أن المعلومات الصحية يجب أن تكون متاحة للجميع بدون مقابل.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>هل يقوم التطبيق بتخزين بياناتي الشخصية؟</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="faq-answer">لا نقوم بتخزين أي بيانات شخصية. سجل المنتجات الممسوحة يتم تخزينه محلياً فقط على جهازك ولا يتم رفعه إلى أي خادم خارجي.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>هل يمكن الاعتماد على معلومات الأدوية؟</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="faq-answer">معلومات الأدوية مأخوذة من مصادر رسمية مثل FDA و DailyMed، ولكن ننصح دائماً باستشارة الطبيب قبل استخدام أي دواء. التطبيق لا يقدم استشارة طبية.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>هل التطبيق متاح بدون إنترنت؟</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="faq-answer">يحتاج التطبيق إلى اتصال بالإنترنت للبحث عن معلومات المنتجات. لكن سجل المنتجات الممسوحة سابقاً متاح للعرض دون إنترنت.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>كيف يتم تحديد جودة المنتج؟</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="faq-answer">نستخدم نظام Nutri-Score العالمي المعتمد من قبل منظمات الصحة العالمية، بالإضافة إلى تحليل المكونات ونسبة المعالجة (Nova Group).</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الفريق -->
+            <div class="section">
+                <h2 class="section-title">👥 فريق العمل</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">👨‍💻</div>
+                        <div class="team-name">فريق HealthScan</div>
+                        <div class="team-role">تطوير وتصميم</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">📊</div>
+                        <div class="team-name">مصادر البيانات</div>
+                        <div class="team-role">Open Food Facts & FDA</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">🔬</div>
+                        <div class="team-name">استشاريون</div>
+                        <div class="team-role">خبراء تغذية وصيدلة</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- دعوة للتواصل -->
             <div class="cta-section">
-                <h3 style="margin-bottom: 15px; color: #1e293b;">🚀 جرب HealthScan الآن</h3>
-                <p style="color: #64748b; margin-bottom: 20px;">امسح أي منتج واكتشف ما يحتويه بنقرة واحدة</p>
-                <a href="#" class="cta-button" onclick="return false;">📲 ابدأ المسح الآن</a>
+                <h3>💡 لديك اقتراح أو استفسار؟</h3>
+                <p>نحن نرحب بملاحظاتك واقتراحاتك لتطوير التطبيق بشكل أفضل</p>
+                <a href="mailto:support@healthscan.com" class="cta-button">📧 تواصل معنا</a>
             </div>
 
             <div class="footer">
                 <p>© 2024 HealthScan - جميع الحقوق محفوظة</p>
-                <p style="margin-top: 8px;">
-                    هذا التطبيق لا يقدم استشارة طبية. استشر طبيبك قبل استخدام أي دواء.
-                </p>
+                <p style="margin-top: 8px;">هذا التطبيق لا يقدم استشارة طبية. استشر طبيبك قبل استخدام أي دواء.</p>
+                <p style="margin-top: 5px; font-size: 11px;">إصدار التطبيق 1.0 | آخر تحديث: مارس 2025</p>
             </div>
         </div>
 
@@ -468,114 +743,246 @@
                 <h1>HealthScan</h1>
                 <div class="version">Version 1.0</div>
                 <p class="tagline">
-                    Your Smart Health Companion - Scan, Analyze, Choose Wisely
+                    Your Smart Health Companion - Scan Barcodes, Analyze Ingredients, Choose Wisely
                 </p>
             </div>
 
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">📷</div>
-                    <h3>Barcode Scanner</h3>
-                    <p>Scan any food product or medicine to get instant and comprehensive information</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔬</div>
-                    <h3>Ingredient Analysis</h3>
-                    <p>Identify harmful ingredients, allergens, and food additives</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💊</div>
-                    <h3>Medicine Information</h3>
-                    <p>Warnings, side effects, and generic names from trusted sources</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Healthy Alternatives</h3>
-                    <p>Get suggestions for healthier product alternatives with Nutri-Score ratings</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Instant Translation</h3>
-                    <p>Translate information into over 15 languages for better understanding</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3>Nutri-Score Rating</h3>
-                    <p>Know product quality through the global Nutri-Score system (A to E)</p>
-                </div>
+            <!-- Vision -->
+            <div class="section">
+                <h2 class="section-title">🎯 Our Vision</h2>
+                <p style="color: #475569; line-height: 1.8; margin-top: 15px;">
+                    We believe that knowledge is the foundation of good health. That's why we built HealthScan to bridge the gap between users and accurate information about the products they consume daily. Our goal is to empower users to make informed health decisions by providing comprehensive, easy-to-understand information about food and medicine.
+                </p>
             </div>
 
-            <div class="info-section">
-                <h2>
-                    <span>🎯</span>
-                    What Does HealthScan Offer?
-                </h2>
-                <ul class="info-list">
-                    <li>Detailed analysis of food ingredients and additives</li>
-                    <li>Detection of allergens like gluten and lactose</li>
-                    <li>Comprehensive medicine information and warnings</li>
-                    <li>Healthy alternatives for low-rated products</li>
-                    <li>Translate information to your preferred language</li>
-                    <li>History log of all scanned products</li>
-                </ul>
-            </div>
-
-            <div class="permissions">
-                <h3>
-                    <span>🔑</span>
-                    Permissions Used
-                </h3>
-                <div class="permission-list">
-                    <div class="permission-item">
-                        <span>📷</span> Camera (for scanning only)
+            <!-- Features -->
+            <div class="section">
+                <h2 class="section-title">✨ Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📷</div>
+                        <h3>Instant Barcode Scanning</h3>
+                        <p>Scan any food or medicine barcode and get instant product information in less than a second.</p>
                     </div>
-                    <div class="permission-item">
-                        <span>🌐</span> Internet (to search for information)
+                    <div class="feature-card">
+                        <div class="feature-icon">🔬</div>
+                        <h3>Smart Ingredient Analysis</h3>
+                        <p>Detailed ingredient analysis identifying harmful substances, allergens, and artificial additives with explanations.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💊</div>
+                        <h3>Medicine Encyclopedia</h3>
+                        <p>Accurate medicine information: generic names, warnings, side effects, and expected uses.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Healthy Alternatives System</h3>
+                        <p>If a product isn't healthy, we suggest better alternatives with nutritional comparisons.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>Instant Translation (15+ Languages)</h3>
+                        <p>Translate all information to your preferred language (Arabic, English, French, German, and more).</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Nutri-Score Rating</h3>
+                        <p>The global Nutri-Score system (A to E) to easily evaluate food product quality.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📜</div>
+                        <h3>Scan History</h3>
+                        <p>Track all previously scanned products with date and time stamps.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚠️</div>
+                        <h3>Allergen Alerts</h3>
+                        <p>Detect allergenic ingredients like gluten, lactose, nuts, and soy.</p>
                     </div>
                 </div>
-                <p style="color: #854d0e; font-size: 13px; margin-top: 15px;">
-                    ✅ No other permissions are requested. We do not access your photos, files, contacts, or location.
-                </p>
             </div>
 
-            <div class="api-section">
-                <h3>
-                    <span>🔗</span>
-                    Information Sources
-                </h3>
-                <div class="api-list">
-                    <div class="api-item">Open Food Facts</div>
-                    <div class="api-item">Open Beauty Facts</div>
-                    <div class="api-item">Open Pet Food Facts</div>
-                    <div class="api-item">FDA (Medicines)</div>
-                    <div class="api-item">DailyMed</div>
-                    <div class="api-item">RXNorm</div>
-                    <div class="api-item">Wikipedia</div>
-                    <div class="api-item">MyMemory Translation</div>
+            <!-- Tech Stack -->
+            <div class="section">
+                <h2 class="section-title">⚙️ Technology Stack</h2>
+                <div class="tech-stack">
+                    <span class="tech-item">📱 Android (Java)</span>
+                    <span class="tech-item">🔍 ZXing Barcode Scanner</span>
+                    <span class="tech-item">🌐 Retrofit & OkHttp</span>
+                    <span class="tech-item">📸 Glide</span>
+                    <span class="tech-item">🗄️ SharedPreferences</span>
+                    <span class="tech-item">🔄 ViewPager2</span>
+                    <span class="tech-item">🎨 Material Design</span>
                 </div>
-                <p style="color: #1e40af; font-size: 13px; margin-top: 15px;">
-                    📡 We rely on open and trusted sources to provide accurate information.
-                </p>
             </div>
 
+            <!-- Data Sources -->
+            <div class="section">
+                <h2 class="section-title">📡 Data Sources</h2>
+                <div class="api-grid">
+                    <div class="api-card">
+                        <div class="api-name">Open Food Facts</div>
+                        <div class="api-desc">World's largest open database of food products</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">Open Beauty Facts</div>
+                        <div class="api-desc">Information about cosmetics and personal care products</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">FDA (OpenFDA)</div>
+                        <div class="api-desc">Official medicine information from the U.S. Food and Drug Administration</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">DailyMed</div>
+                        <div class="api-desc">Comprehensive medicine information and warnings</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">RXNorm</div>
+                        <div class="api-desc">Generic names and drug alternatives</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">Wikipedia</div>
+                        <div class="api-desc">Additional information about ingredients and food substances</div>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-name">MyMemory Translation</div>
+                        <div class="api-desc">Free translation service supporting 15+ languages</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="section">
+                <h2 class="section-title">📊 HealthScan Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">3,000,000+</div>
+                        <div class="stat-label">Products in Database</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Supported Languages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Trusted Data Sources</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">&lt; 1s</div>
+                        <div class="stat-label">Response Time</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roadmap -->
+            <div class="section">
+                <h2 class="section-title">🗺️ Roadmap</h2>
+                <div class="roadmap">
+                    <div class="roadmap-item">
+                        <div class="roadmap-status status-done">✅ Done</div>
+                        <div class="roadmap-content">
+                            <h4>Version 1.0 - Initial Launch</h4>
+                            <p>Food and medicine scanning, ingredient analysis, translation, scan history.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-status status-progress">🔄 In Progress</div>
+                        <div class="roadmap-content">
+                            <h4>Version 1.5 - New Features</h4>
+                            <p>Favorites system, more accurate ingredient analysis, additional language support.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-status status-planned">📅 Planned</div>
+                        <div class="roadmap-content">
+                            <h4>Version 2.0 - Major Update</h4>
+                            <p>Smart notifications, health device integration, offline mode, personalized recommendations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="section">
+                <h2 class="section-title">❓ Frequently Asked Questions</h2>
+                <div class="faq">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Is the app completely free?</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="faq-answer">Yes, HealthScan is completely free and contains no ads. We believe health information should be accessible to everyone.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Does the app store my personal data?</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="faq-answer">No, we do not store any personal data. The scan history is stored locally on your device and is not uploaded to any external server.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Can I rely on the medicine information?</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="faq-answer">Medicine information comes from official sources like FDA and DailyMed, but we always recommend consulting your doctor before using any medication. This app does not provide medical advice.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Does the app work offline?</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="faq-answer">The app requires an internet connection to search for product information. However, previously scanned products are available offline.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How is product quality determined?</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="faq-answer">We use the global Nutri-Score system approved by global health organizations, along with ingredient analysis and processing level (Nova Group).</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team -->
+            <div class="section">
+                <h2 class="section-title">👥 Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">👨‍💻</div>
+                        <div class="team-name">HealthScan Team</div>
+                        <div class="team-role">Development & Design</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">📊</div>
+                        <div class="team-name">Data Sources</div>
+                        <div class="team-role">Open Food Facts & FDA</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">🔬</div>
+                        <div class="team-name">Consultants</div>
+                        <div class="team-role">Nutrition & Pharmacy Experts</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact -->
             <div class="cta-section">
-                <h3 style="margin-bottom: 15px; color: #1e293b;">🚀 Try HealthScan Now</h3>
-                <p style="color: #64748b; margin-bottom: 20px;">Scan any product and discover what's inside with one click</p>
-                <a href="#" class="cta-button" onclick="return false;">📲 Start Scanning Now</a>
+                <h3>💡 Have a suggestion or question?</h3>
+                <p>We welcome your feedback to help improve the app</p>
+                <a href="mailto:support@healthscan.com" class="cta-button">📧 Contact Us</a>
             </div>
 
             <div class="footer">
                 <p>© 2024 HealthScan - All Rights Reserved</p>
-                <p style="margin-top: 8px;">
-                    This app does not provide medical advice. Consult your doctor before using any medication.
-                </p>
+                <p style="margin-top: 8px;">This app does not provide medical advice. Consult your doctor before using any medication.</p>
+                <p style="margin-top: 5px; font-size: 11px;">App Version 1.0 | Last Updated: March 2025</p>
             </div>
         </div>
     </div>
 
     <script>
         function switchLanguage(lang) {
-            // Update active class on buttons
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
@@ -590,6 +997,17 @@
                 document.getElementById('english').classList.add('active');
                 document.getElementById('arabic').classList.remove('active');
                 document.documentElement.dir = 'ltr';
+            }
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('show');
+            const arrow = element.querySelector('span:last-child');
+            if (answer.classList.contains('show')) {
+                arrow.textContent = '▲';
+            } else {
+                arrow.textContent = '▼';
             }
         }
     </script>
